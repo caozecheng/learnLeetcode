@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>最长不重复字符串</title>
+  </head>
+  <body></body>
+  <script>
+    // abcdadc  4
+    //adae  2
+    var lengthOflongestSubstring = function (s) {
+      const set = new Set()
+      let i = 0,
+        j = 0,
+        maxLength = 0
+      if (s.length === 0) {
+        return 0
+      }
+
+      for (i; i < s.length; i++) {
+        if (!set.has(s[i])) {
+          set.add(s[i])
+          maxLength = Math.max(maxLength, set.size)
+        } else {
+          while (set.has(s[i])) {
+            set.delete(s[j])
+            j++
+          }
+          set.add(s[i])
+        }
+      }
+      return maxLength
+    }
+  </script>
+</html>
